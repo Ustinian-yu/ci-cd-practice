@@ -21,7 +21,11 @@ jobs:
           node-version: '18'
       
       - name: Install dependencies
-        run: npm install
+        run: npm install  # 会自动安装ESLint相关依赖
+      
+      # 新增：代码质量检查（ESLint）
+      - name: Run ESLint check
+        run: npm run lint  # 执行package.json中配置的lint脚本
       
       - name: Run tests
         run: npm test
@@ -33,7 +37,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
-      # 获取短哈希
       - name: Get short SHA
         id: vars
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
