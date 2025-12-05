@@ -48,4 +48,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/ustinian-yu/ci-cd-practice:latest
+          # 新增：同时使用latest和7位Commit SHA作为标签
+          tags: |
+            ghcr.io/ustinian-yu/ci-cd-practice:latest
+            ghcr.io/ustinian-yu/ci-cd-practice:${{ github.sha::7 }}
