@@ -50,4 +50,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/ustinian-yu/ci-cd-practice:latest
-            ghcr.io/ustinian-yu/ci-cd-practice:${{ github.sha[:7] }}
+            ghcr.io/ustinian-yu/ci-cd-practice:${{ github.sha::7 }}
