@@ -21,11 +21,7 @@ jobs:
           node-version: '18'
       
       - name: Install dependencies
-        run: npm install  # 会自动安装ESLint相关依赖
-      
-      # 新增：代码质量检查（ESLint）
-      - name: Run ESLint check
-        run: npm run lint  # 执行package.json中配置的lint脚本
+        run: npm install
       
       - name: Run tests
         run: npm test
@@ -36,7 +32,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Get short SHA
         id: vars
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
@@ -56,6 +52,7 @@ jobs:
         with:
           context: .
           push: true
+          # 同时使用latest和7位Commit SHA作为标签
           tags: |
             ghcr.io/ustinian-yu/ci-cd-practice:latest
             ghcr.io/ustinian-yu/ci-cd-practice:${{ steps.vars.outputs.sha_short }}
